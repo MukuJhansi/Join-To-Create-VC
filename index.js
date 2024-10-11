@@ -2,8 +2,12 @@ const { Client, GatewayIntentBits, ActivityType, Collection, ChannelType } = req
 const configs = require('./config.json');
 require('colors');
 const voiceData = new Collection();
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-process.env.TOKEN = token
+
+const token = process.env.TOKEN;
 const client = new Client({
     intents: [
         GatewayIntentBits.GuildMembers,
@@ -106,6 +110,29 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
     }
 });
 
+// Create a server
+const server = http.createServer((req, res) => {
+    // Serve index.html
+    if (req.url === '/') {
+      const filePath = path.join(__dirname, 'index.html');
+      
+      // Read and serve the HTML file
+      fs.readFile(filePath, (err, content) => {
+        if (err) {
+          res.writeHead(500);
+          res.end('Error occurred: ' + err.message);
+        } else {
+          res.writeHead(200, { 'Content-Type': 'text/html' });
+          res.end(content, 'utf-8');
+        }
+      });
+    } else {
+      // 404 for any other request
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('404 Not Found');
+    }
+  });
+
 client.on('ready', () => {
     console.log(`
 
@@ -120,6 +147,12 @@ client.on('ready', () => {
     console.log("----------------------------------------".blue);
     console.log(`[Djs v14: READY] ${client.user.tag} is up and ready to go.`.bold)
     console.log("----------------------------------------".white);
+});
+
+// Start the server on port 3000
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 client.login(configs.token);
