@@ -16,8 +16,8 @@ const client = new Client({
         GatewayIntentBits.MessageContent
     ],
     presence: {
-        activities: [{name: `Voice Channels`, type: ActivityType.Watching}],
-        status: "idle" // "online", "dnd", "idle"
+        activities: [{name: `With Bala`, type: ActivityType.PLaying}],
+        status: "dnd" // "online", "dnd", "idle"
     }
 });
 

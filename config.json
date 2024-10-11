@@ -1,10 +1,10 @@
 {
     "prefix": ".,",
     
-    "channelId": "1094975441032454295",
-    "userLimit": 4,
+    "channelId": "1258402608981213309",
+    "userLimit": 10,
     "nameFormat": "〔🎤〕",
-    "categoryId": "991743294801444984",
+    "categoryId": "1294257087966216243",
     "bitrate": 96000,
     "memberPerms": ["Connect", "ManageChannels", "ManageRoles", "MoveMembers"],
     "everyonePerms": ["Connect", "Speak", "ViewChannel"]
