@@ -7,8 +7,6 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-
-const token = process.env.TOKEN;
 const client = new Client({
     intents: [
         GatewayIntentBits.GuildMembers,
@@ -156,4 +154,4 @@ client.on('ready', () => {
     });
 });
 
-client.login(configs.token);
+client.login(process.env.TOKEN);
