@@ -1,6 +1,7 @@
 const { Client, GatewayIntentBits, ActivityType, Collection, ChannelType } = require('discord.js');
 const configs = require('./config.json');
 require('colors');
+require('dotenv').config();
 const voiceData = new Collection();
 const http = require('http');
 const fs = require('fs');
@@ -147,12 +148,12 @@ client.on('ready', () => {
     console.log("----------------------------------------".blue);
     console.log(`[Djs v14: READY] ${client.user.tag} is up and ready to go.`.bold)
     console.log("----------------------------------------".white);
-});
-
-// Start the server on port 3000
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    
+    // Start the server on port 3000
+    const PORT = 3000;
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
 });
 
 client.login(configs.token);
